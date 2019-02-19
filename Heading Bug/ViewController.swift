@@ -67,6 +67,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         wayPoint.location = CLLocationCoordinate2D (latitude: 31.7225, longitude: 35.993333)
         wayPointManager.addWayPoint(wayPoint: wayPoint)
         
+        wayPoint.name = "Cove Bay"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 57.105, longitude: -2.089)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "Glasgow"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 55.860916, longitude: -4.251433)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "Nottingham"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 52.95, longitude: -1.15)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "Premier Inn Glasgow"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 55.85779, longitude: -4.2912021)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "Ian's Flat"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 55.8633114, longitude: -4.2916313)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
         print (wayPointManager.getWayPointCount())
         
         determineMyCurrentLocation()
@@ -127,13 +147,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // manager.stopUpdatingLocation()
         
-        print("user latitude = \(userLocation.coordinate.latitude)")
-        print("user longitude = \(userLocation.coordinate.longitude)")
+        // print("user latitude = \(userLocation.coordinate.latitude)")
+        // print("user longitude = \(userLocation.coordinate.longitude)")
         
         currentLocation = CLLocationCoordinate2D (latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
     
         refreshSortAndFilterData()
-    
     }
     
     

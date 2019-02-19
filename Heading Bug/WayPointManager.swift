@@ -101,7 +101,9 @@ class WayPointManager {
         let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
         let radiansBearing = atan2(y, x)
         
-        return radiansToDegrees(radians: radiansBearing)
+        let degrees = radiansToDegrees(radians: radiansBearing)
+        
+        return (degrees+360).truncatingRemainder(dividingBy: 360)
     }
 }
 
