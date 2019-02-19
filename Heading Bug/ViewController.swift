@@ -152,7 +152,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = 50
+        locationManager.allowsBackgroundLocationUpdates = false
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters // kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {

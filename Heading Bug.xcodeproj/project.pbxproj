@@ -39,11 +39,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA648AE9221CB007002E0EA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AAF5800C221C3418002C29E6 = {
 			isa = PBXGroup;
 			children = (
 				AAF58017221C3418002C29E6 /* Heading Bug */,
 				AAF58016221C3418002C29E6 /* Products */,
+				AA648AE9221CB007002E0EA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +110,14 @@
 				TargetAttributes = {
 					AAF58014221C3418002C29E6 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
