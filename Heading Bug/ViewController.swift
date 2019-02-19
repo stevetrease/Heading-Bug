@@ -57,6 +57,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         cell.textLabel?.text = wayPointManager.getWayPoint(item: indexPath.row).name
         
+        let distanceInMeters = Measurement(value: wayPointManager.wayPointDistance(item: indexPath.row, from: currentLocation), unit: UnitLength.meters)
+        let distanceFormatter = MeasurementFormatter()
+        distanceFormatter.unitStyle = .medium
+        distanceFormatter.numberFormatter.maximumFractionDigits = 1
+        distanceFormatter.numberFormatter.minimumFractionDigits = 1
+        let distanceString = distanceFormatter.string(from: distanceInMeters)
+        
+        let bearing = wayPointManager.wayPointBearing(item: indexPath.row, from: currentLocation)
+        let bearingFormatter = NumberFormatter()
+        bearingFormatter.maximumFractionDigits = 0
+        bearingFormatter.minimumFractionDigits = 0
+        let bearingString = bearingFormatter.string(from: NSNumber(value: bearing))
+        
+        cell.detailTextLabel?.text = distanceString + " at " + bearingString! + "°"
+        
         return cell
     }
     
@@ -67,6 +82,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.reloadData()
     }
-
 }
 
