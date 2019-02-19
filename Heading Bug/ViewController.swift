@@ -159,7 +159,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // print("user longitude = \(userLocation.coordinate.longitude)")
         
         currentLocation = CLLocationCoordinate2D (latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-    
+        
+        let geocoder = CLGeocoder()
+        
+        // Look up the location and pass it to the completion handler
+        geocoder.reverseGeocodeLocation(userLocation, preferredLocale: nil, completionHandler: { (placemarks, error) in
+            if error == nil {
+                let firstLocation = placemarks?[0]
+                print (firstLocation!.subLocality, firstLocation!.locality, firstLocation!.country)
+
+                OperationQueue.main.addOperation {
+                    self.currentLocationLabel.text = firstLocation!.subLocality! + ", " + firstLocation!.locality! + ", " + firstLocation!.country!
+                }
+            }
+            return
+        })
+            
         refreshSortAndFilterData()
     }
     
