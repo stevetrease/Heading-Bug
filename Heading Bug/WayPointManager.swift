@@ -48,7 +48,7 @@ class WayPointManager {
         let matchingWayPoints = wayPoints.filter { $0.name == wayPoint.name }
         
         if (matchingWayPoints.count == 0) {
-            print ("adding wayPoint \(wayPoint.name)")
+            // print ("adding wayPoint \(wayPoint.name)")
             wayPoints.append (wayPoint)
             wayPoints = wayPoints.sorted(by: { $0.name < $1.name})
         } else {
