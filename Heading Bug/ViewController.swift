@@ -95,6 +95,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         wayPoint.location = CLLocationCoordinate2D (latitude: 55.8633114, longitude: -4.2916313)
         wayPointManager.addWayPoint(wayPoint: wayPoint)
         
+        wayPoint.name = "Apple Park"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 37.334722, longitude: -122.008889)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
         print (wayPointManager.getWayPointCount())
         
         determineMyCurrentLocation()
