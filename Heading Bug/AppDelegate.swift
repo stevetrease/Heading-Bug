@@ -16,6 +16,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        
+        print ("device uuid ", (UIDevice.current.identifierForVendor?.uuidString)!)
+        
+        let appName: String = (Bundle.main.infoDictionary?["CFBundleName"] as? String)!
+        let versionNumber: String = (Bundle.main.infoDictionary?["CFBundleVersion"] as? String)!
+        print ("\(appName)  (\(versionNumber))")
+        
+        if (isTestFlight()) {
+            print ("running via TestFlight")
+        } else {
+            print ("not running via TestFlight")
+        }
+        
+        
+        switch (application.applicationState) {
+        case .active:
+            print ("didFinishLaunchingWithOptions - active")
+        case .inactive:
+            print ("didFinishLaunchingWithOptions - inactive")
+        case .background:
+            print ("didFinishLaunchingWithOptions - background")
+        }
+        
         return true
     }
 
@@ -44,3 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+
+func isTestFlight () -> Bool {
+    guard let appStoreReceiptURL = Bundle.main.appStoreReceiptURL else {
+        return false
+    }
+    return appStoreReceiptURL.lastPathComponent == "sandboxReceipt"
+}
