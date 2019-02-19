@@ -35,6 +35,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         wayPoint.location = CLLocationCoordinate2D (latitude: 30.548889, longitude: 47.662472)
         wayPointManager.addWayPoint(wayPoint: wayPoint)
         
+        wayPoint.name = "Edwalton"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 52.9125, longitude: -1.1125)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "Charlestown Circle"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 57.0959676, longitude: -2.0971963)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
         wayPoint.name = "ABZ"
         wayPoint.location = CLLocationCoordinate2D (latitude: 57.2037, longitude: -2.198055)
         wayPointManager.addWayPoint(wayPoint: wayPoint)
