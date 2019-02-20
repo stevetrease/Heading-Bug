@@ -29,6 +29,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        currentLatLongLabel.text = ""
+        currentLocationLabel.text = ""
+        
         createInitialWayPoints()
         
         determineMyCurrentLocation()
@@ -108,10 +111,27 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         geocoder.reverseGeocodeLocation(userLocation, preferredLocale: nil, completionHandler: { (placemarks, error) in
             if error == nil {
                 let firstLocation = placemarks?[0]
-                print (firstLocation!.subLocality, firstLocation!.locality, firstLocation!.country)
-
+                
+                var tempString = ""
+                if (firstLocation?.subLocality != nil) {
+                    tempString = tempString + (firstLocation?.subLocality)!
+                }
+                if (firstLocation?.locality != nil) {
+                    if tempString != "" {
+                        tempString = tempString + ", "
+                    }
+                    tempString = tempString + (firstLocation?.locality)!
+                }
+                if (firstLocation?.country != nil) {
+                    if tempString != "" {
+                        tempString = tempString + ", "
+                    }
+                    tempString = tempString + (firstLocation?.country)!
+                }
+                print (tempString)
+                
                 OperationQueue.main.addOperation {
-                    self.currentLocationLabel.text = firstLocation!.subLocality! + ", " + firstLocation!.locality! + ", " + firstLocation!.country!
+                    self.currentLocationLabel.text = tempString
                 }
             }
             return
