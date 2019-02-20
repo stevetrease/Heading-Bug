@@ -159,7 +159,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
-            locationManager.startUpdatingHeading()
+            // locationManager.startUpdatingHeading()
         }
     }
     
@@ -170,7 +170,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    func locationManager (_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) { 
+    func locationManager (_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         let userLocation:CLLocation = locations[0] as CLLocation
         
