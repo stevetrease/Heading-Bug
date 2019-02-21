@@ -92,5 +92,4 @@ import UIKit
         ctx?.drawPath(using: .fillStroke)
         ctx?.restoreGState()
     }
-
 }

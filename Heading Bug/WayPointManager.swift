@@ -10,11 +10,51 @@ import Foundation
 import UIKit
 import CoreLocation
 
+
+var currentLocation = CLLocationCoordinate2D (latitude: 57.105, longitude: -2.089) // {
+    // didSet {
+    //     print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)", currentLocation.latitude, currentLocation.longitude)
+    // }
+// }
+
+
 var wayPointManager = WayPointManager()
 
 struct WayPointData {
     var name: String = ""
     var location: CLLocationCoordinate2D = CLLocationCoordinate2D (latitude: 0, longitude: 0)
+    var bearing: Double {
+        get {
+            //let locationFrom = CLLocation (latitude: location.latitude, longitude: location.longitude)
+            // let itemLocation = CLLocation (latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+            
+            func degreesToRadians(degrees: Double) -> Double { return degrees * .pi / 180.0 }
+            func radiansToDegrees(radians: Double) -> Double { return radians * 180.0 / .pi }
+            
+            let lat1 = degreesToRadians(degrees: currentLocation.latitude)
+            let lon1 = degreesToRadians(degrees: currentLocation.longitude)
+            
+            let lat2 = degreesToRadians(degrees: location.latitude)
+            let lon2 = degreesToRadians(degrees: location.longitude)
+            
+            let dLon = lon2 - lon1
+            
+            let y = sin(dLon) * cos(lat2)
+            let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
+            let radiansBearing = atan2(y, x)
+            
+            let degrees = radiansToDegrees(radians: radiansBearing)
+            
+            return (degrees+360).truncatingRemainder(dividingBy: 360)
+        }
+    }
+    var distance: Double {
+        get {
+            let locationOne = CLLocation (latitude: location.latitude, longitude: location.longitude)
+            let locationTwo = CLLocation (latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+            return (locationOne.distance(from: locationTwo))
+        }
+    }
 }
 
 
@@ -29,15 +69,12 @@ private enum sortTypes {
 }
 
 
-
-
 class WayPointManager {
     
     static let sharedInstance = WayPointManager()
     
     private var wayPoints = [WayPointData]()
-    private var currentSortType: sortTypes = .alphabetical
-    
+    private var currentSortType: sortTypes = .distance
     
     init() {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
@@ -52,9 +89,9 @@ class WayPointManager {
     func sortWayPoints () {
         switch currentSortType {
         case .alphabetical:
-            wayPoints = wayPoints.sorted(by: { $0.name < $1.name})
-        case .distance: // reverse alpha for now!
-            wayPoints = wayPoints.sorted(by: { $0.name > $1.name})
+            wayPoints = wayPoints.sorted(by: { $0.name < $1.name })
+        case .distance:
+            wayPoints = wayPoints.sorted(by: { $0.distance < $1.distance })
         }
     }
     
@@ -99,10 +136,9 @@ class WayPointManager {
     }
     
     
-    private func degreesToRadians(degrees: Double) -> Double { return degrees * .pi / 180.0 }
-    private func radiansToDegrees(radians: Double) -> Double { return radians * 180.0 / .pi }
-    
     private func getBearingBetweenTwoPoints1(point1 : CLLocation, point2 : CLLocation) -> Double {
+        func degreesToRadians(degrees: Double) -> Double { return degrees * .pi / 180.0 }
+        func radiansToDegrees(radians: Double) -> Double { return radians * 180.0 / .pi }
         
         let lat1 = degreesToRadians(degrees: point1.coordinate.latitude)
         let lon1 = degreesToRadians(degrees: point1.coordinate.longitude)

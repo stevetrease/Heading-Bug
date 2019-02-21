@@ -9,9 +9,6 @@
 import UIKit
 import CoreLocation
 
-var currentLocation = CLLocationCoordinate2D (latitude: 57.105, longitude: -2.089)
-
-
 
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
@@ -22,7 +19,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet var tableView: UITableView!
     
-    var currentLocation = CLLocationCoordinate2D (latitude: 0, longitude:0)
     var locationManager:CLLocationManager!
     
 
@@ -52,14 +48,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         cell.textLabel?.text = wayPointManager.getWayPoint(item: indexPath.row).name
         
-        let distanceInMeters = Measurement(value: wayPointManager.wayPointDistance(item: indexPath.row, from: currentLocation), unit: UnitLength.meters)
+        // let distanceInMeters = Measurement(value: wayPointManager.wayPointDistance(item: indexPath.row, from: currentLocation), unit: UnitLength.meters)
+        let distanceInMeters = Measurement(value: wayPointManager.getWayPoint(item: indexPath.row).distance, unit: UnitLength.meters)
         let distanceFormatter = MeasurementFormatter()
         distanceFormatter.unitStyle = .medium
         distanceFormatter.numberFormatter.maximumFractionDigits = 1
         distanceFormatter.numberFormatter.minimumFractionDigits = 1
         let distanceString = distanceFormatter.string(from: distanceInMeters)
         
-        let bearing = wayPointManager.wayPointBearing(item: indexPath.row, from: currentLocation)
+        // let bearing = wayPointManager.wayPointBearing(item: indexPath.row, from: currentLocation)
+        let bearing = wayPointManager.getWayPoint(item: indexPath.row).bearing
         let bearingFormatter = NumberFormatter()
         bearingFormatter.maximumFractionDigits = 0
         bearingFormatter.minimumFractionDigits = 0
