@@ -12,19 +12,22 @@ import CoreLocation
 
 var wayPointManager = WayPointManager()
 
-
-
-
 struct WayPointData {
     var name: String = ""
     var location: CLLocationCoordinate2D = CLLocationCoordinate2D (latitude: 0, longitude: 0)
 }
 
 
-
 private struct WayPointContainer {
     var wayPoints: [WayPointData]
 }
+
+
+private enum sortTypes {
+    case    alphabetical
+    case    distance
+}
+
 
 
 
@@ -33,6 +36,8 @@ class WayPointManager {
     static let sharedInstance = WayPointManager()
     
     private var wayPoints = [WayPointData]()
+    private var currentSortType: sortTypes = .alphabetical
+    
     
     init() {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
@@ -44,13 +49,23 @@ class WayPointManager {
     }
     
     
+    func sortWayPoints () {
+        switch currentSortType {
+        case .alphabetical:
+            wayPoints = wayPoints.sorted(by: { $0.name < $1.name})
+        case .distance: // reverse alpha for now!
+            wayPoints = wayPoints.sorted(by: { $0.name > $1.name})
+        }
+    }
+    
+    
     func addWayPoint (wayPoint: WayPointData) {
         let matchingWayPoints = wayPoints.filter { $0.name == wayPoint.name }
         
         if (matchingWayPoints.count == 0) {
             // print ("adding wayPoint \(wayPoint.name)")
             wayPoints.append (wayPoint)
-            wayPoints = wayPoints.sorted(by: { $0.name < $1.name})
+            sortWayPoints()
         } else {
             print ("duplicate wayPoint \(wayPoint.name)")
         }

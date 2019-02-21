@@ -15,7 +15,6 @@ import UIKit
     
     @IBInspectable var heading = 0.0 {
         didSet {
-            print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
             self.setNeedsDisplay()
         }
     }
