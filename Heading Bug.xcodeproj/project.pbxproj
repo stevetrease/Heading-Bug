@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA648AE8221CA7CE002E0EA6 /* Compass.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA648AE7221CA7CE002E0EA6 /* Compass.swift */; };
+		AA648AE8221CA7CE002E0EA6 /* CompassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA648AE7221CA7CE002E0EA6 /* CompassViewController.swift */; };
 		AAF58019221C3418002C29E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF58018221C3418002C29E6 /* AppDelegate.swift */; };
 		AAF5801B221C3418002C29E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF5801A221C3418002C29E6 /* ViewController.swift */; };
 		AAF5801E221C3418002C29E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAF5801C221C3418002C29E6 /* Main.storyboard */; };
@@ -17,7 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AA648AE7221CA7CE002E0EA6 /* Compass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compass.swift; sourceTree = "<group>"; };
+		AA648AE7221CA7CE002E0EA6 /* CompassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompassViewController.swift; sourceTree = "<group>"; };
 		AAF58015221C3418002C29E6 /* Heading Bug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Heading Bug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAF58018221C3418002C29E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAF5801A221C3418002C29E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				AAF58021221C3419002C29E6 /* LaunchScreen.storyboard */,
 				AAF58024221C3419002C29E6 /* Info.plist */,
 				AAF5802C221C349D002C29E6 /* WayPointManager.swift */,
-				AA648AE7221CA7CE002E0EA6 /* Compass.swift */,
+				AA648AE7221CA7CE002E0EA6 /* CompassViewController.swift */,
 			);
 			path = "Heading Bug";
 			sourceTree = "<group>";
@@ -198,7 +198,7 @@
 			files = (
 				AAF5802D221C349D002C29E6 /* WayPointManager.swift in Sources */,
 				AAF5801B221C3418002C29E6 /* ViewController.swift in Sources */,
-				AA648AE8221CA7CE002E0EA6 /* Compass.swift in Sources */,
+				AA648AE8221CA7CE002E0EA6 /* CompassViewController.swift in Sources */,
 				AAF58019221C3418002C29E6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

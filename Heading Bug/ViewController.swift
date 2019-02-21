@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     @IBOutlet weak var currentLatLongLabel: UILabel!
     @IBOutlet weak var currentLocationLabel: UILabel!
+    @IBOutlet weak var compassView: CompassView!
     
     @IBOutlet var tableView: UITableView!
     
@@ -80,7 +81,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
-            // locationManager.startUpdatingHeading()
+            locationManager.startUpdatingHeading()
         }
     }
     
@@ -88,6 +89,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
         print ("heading: \(newHeading)")
+        compassView.heading = newHeading.trueHeading
     }
     
     
@@ -118,17 +120,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
                 if (firstLocation?.locality != nil) {
                     if tempString != "" {
-                        tempString = tempString + ", "
+                        tempString = tempString + "\n"
                     }
                     tempString = tempString + (firstLocation?.locality)!
                 }
                 if (firstLocation?.country != nil) {
                     if tempString != "" {
-                        tempString = tempString + ", "
+                        tempString = tempString + "\n"
                     }
                     tempString = tempString + (firstLocation?.country)!
                 }
-                print (tempString)
+                // print (tempString)
                 
                 OperationQueue.main.addOperation {
                     self.currentLocationLabel.text = tempString
@@ -157,7 +159,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let latString = numberFormatter.string(from: NSNumber(value: currentLocation.latitude))
         let longString = numberFormatter.string(from: NSNumber(value: currentLocation.longitude))
         
-        currentLatLongLabel.text = latString! + ", " + longString!
+        currentLatLongLabel.text = latString! + "\n" + longString!
         
         tableView.reloadData()
     }
