@@ -33,7 +33,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         currentLatLongLabel.text = ""
         currentLocationLabel.text = ""
         
-        createInitialWayPoints()
+        wayPointManager.createInitialWayPoints ()
+        print (wayPointManager.getWayPointCount(), "waypoints added")
         
         determineMyCurrentLocation()
         
@@ -162,105 +163,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         currentLatLongLabel.text = latString! + "\n" + longString!
         
         tableView.reloadData()
-    }
-    
-    
-    private func createInitialWayPoints () {
-        var wayPoint = WayPointData()
-        
-        wayPoint.name = "BSR Basra International Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 30.548889, longitude: 47.662472)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "AMS Amsterdam Schipol Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 52.308056, longitude: 4.764167)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "KAZ Plant"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 30.269108, longitude: 47.7307172)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Edwalton"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 52.9125, longitude: -1.1125)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Charlestown Circle"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 57.0959676, longitude: -2.0971963)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "ABZ Aberdeen International Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 57.2037, longitude: -2.198055)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "LHR London Heathrow Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 51.4775, longitude: -0.461389)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Aberdeen City"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 57.15, longitude: -2.11)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "DXB Dubai International Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 25.252778, longitude: 55.364444)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "CDG Charles de Gaulle Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 49.009722, longitude: 2.547778)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "DOH Doha Hamad International Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 25.273056, longitude: 51.608056)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "LAX Los Angeles International Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 33.9425, longitude:-118.408056)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "AMM Amman Queen Alia International Airport"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 31.7225, longitude: 35.993333)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Cove Bay"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 57.105, longitude: -2.089)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Jodrell Bank Observatory"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 53.23625, longitude: -2.307139)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Glasgow"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 55.860916, longitude: -4.251433)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Nottingham"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 52.95, longitude: -1.15)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Premier Inn Glasgow"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 55.85779, longitude: -4.2912021)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Ian's Flat"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 55.8633114, longitude: -4.2916313)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Royal Observatory, Greenwich "
-        wayPoint.location = CLLocationCoordinate2D (latitude: 51.4778, longitude: -0.0014)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Zero zero"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 0, longitude: 0)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "McMurdo Station"
-        wayPoint.location = CLLocationCoordinate2D (latitude: -77.846323, longitude: 166.668235)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        wayPoint.name = "Apple Park"
-        wayPoint.location = CLLocationCoordinate2D (latitude: 37.334722, longitude: -122.008889)
-        wayPointManager.addWayPoint(wayPoint: wayPoint)
-        
-        print (wayPointManager.getWayPointCount(), "waypoints added")
     }
 }
 

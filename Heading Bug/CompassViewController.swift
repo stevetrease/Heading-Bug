@@ -45,7 +45,7 @@ import UIKit
     }
     
     override func draw(_ rect:CGRect) {
-        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)", heading)
 
         radius = Double((0.9 * min(rect.width, rect.height)) / 2)
         let center = CGPoint (x: rect.width / 2, y: rect.height / 2)
