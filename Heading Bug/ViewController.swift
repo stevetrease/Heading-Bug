@@ -160,8 +160,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let latString = numberFormatter.string(from: NSNumber(value: currentLocation.latitude))
         let longString = numberFormatter.string(from: NSNumber(value: currentLocation.longitude))
         
+        currentLatLongLabel.alpha = 0.7
         currentLatLongLabel.text = latString! + "\n" + longString!
+        UIView.animate(withDuration: 0.5, animations: {
+            self.currentLatLongLabel.alpha = 1.0
+        })
         
+        tableView.reloadData()
+    }
+    
+    
+    @IBAction func didTap(sender: UITapGestureRecognizer) {
+        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        
+        let location = sender.location(in: view)
+        // User tapped at the point above. Do something with that if you want.
         tableView.reloadData()
     }
 }
