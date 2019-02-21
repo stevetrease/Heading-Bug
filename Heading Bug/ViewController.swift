@@ -87,8 +87,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
-        print ("heading: \(newHeading)")
+        // print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+        // print ("heading: \(newHeading)")
         compassView.heading = newHeading.trueHeading
     }
     

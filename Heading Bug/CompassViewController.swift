@@ -16,8 +16,12 @@ import UIKit
     @IBInspectable var heading = 0.0 {
         didSet {
             print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
+            self.setNeedsDisplay()
         }
     }
+    
+    private let lineWeight = 2.0
+    private var radius = 1.0
     
     
     //initWithFrame to init view from code
@@ -44,25 +48,24 @@ import UIKit
     override func draw(_ rect:CGRect) {
         print (NSURL (fileURLWithPath: "\(#file)").lastPathComponent!, "\(#function)")
 
-        let radius = (0.9 * min(rect.width, rect.height)) / 2.0
-        let center = CGPoint (x: rect.width / 2.00, y: rect.height / 2.0)
+        radius = Double((0.9 * min(rect.width, rect.height)) / 2)
+        let center = CGPoint (x: rect.width / 2, y: rect.height / 2)
         
-        let lineWeight = 2.0
-        
+        // draw clock face
         let ctx = UIGraphicsGetCurrentContext()
-        ctx?.addArc(center: center, radius: radius, startAngle: CGFloat(0), endAngle: CGFloat(2 * Double.pi), clockwise: true)
+        ctx?.addArc(center: center, radius: CGFloat(radius), startAngle: CGFloat(0), endAngle: CGFloat(2 * Double.pi), clockwise: true)
         ctx?.setFillColor(UIColor.clear.cgColor)
         ctx?.setStrokeColor(UIColor.lightGray.cgColor)
-        ctx?.setLineWidth(CGFloat(lineWeight * 2.0))
+        ctx?.setLineWidth(CGFloat(lineWeight * 2))
         ctx?.drawPath(using: .fillStroke)
         
         let lines = 8
         for line in 1...lines {
             ctx?.saveGState()
             ctx?.translateBy(x: center.x, y: center.y)
-            ctx?.rotate(by: CGFloat ((2.0 * Double.pi) * (Double(line) / Double(lines))))
+            ctx?.rotate(by: CGFloat ((2 * Double.pi) * (Double(line) / Double(lines))))
             ctx?.addLines(between: [CGPoint(x: CGFloat(0), y:CGFloat(0)), CGPoint(x: CGFloat(0), y: CGFloat(radius))])
-            ctx?.setLineWidth(CGFloat(lineWeight / 2.0))
+            ctx?.setLineWidth(CGFloat(lineWeight / 2))
             ctx?.drawPath(using: .fillStroke)
             ctx?.restoreGState()
         }
@@ -71,12 +74,24 @@ import UIKit
         for tick in 1...ticks {
             ctx?.saveGState()
             ctx?.translateBy(x: center.x, y: center.y)
-            ctx?.rotate(by: CGFloat ((2.0 * Double.pi) * (Double(tick) / Double(ticks))))
-            ctx?.addLines(between: [CGPoint(x: CGFloat(0), y:radius - CGFloat(lineWeight * 3)), CGPoint(x: CGFloat(0), y: radius)])
+            ctx?.rotate(by: CGFloat ((2 * Double.pi) * (Double(tick) / Double(ticks))))
+            ctx?.addLines(between: [CGPoint(x: CGFloat(0), y:CGFloat(radius - (lineWeight * 3))), CGPoint(x: CGFloat(0), y: CGFloat(radius))])
             ctx?.setLineWidth(CGFloat(lineWeight))
             ctx?.drawPath(using: .fillStroke)
             ctx?.restoreGState()
         }
+        
+        
+        // Draw the needle
+        let rotation =  ((heading - 180) / 360) * (Double.pi * 2)
+        ctx?.setStrokeColor(UIColor.black.cgColor)
+        ctx?.saveGState()
+        ctx?.translateBy(x: center.x, y: center.y)
+        ctx?.rotate(by: CGFloat (rotation))
+        ctx?.addLines(between: [CGPoint(x: CGFloat(0), y:CGFloat(radius - (lineWeight * 5))), CGPoint(x: CGFloat(0), y: CGFloat(radius))])
+        ctx?.setLineWidth(CGFloat(lineWeight * 3))
+        ctx?.drawPath(using: .fillStroke)
+        ctx?.restoreGState()
     }
-    
+
 }
