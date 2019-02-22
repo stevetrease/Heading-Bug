@@ -110,10 +110,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         // Look up the location and pass it to the completion handler
         geocoder.reverseGeocodeLocation(userLocation, preferredLocale: nil, completionHandler: { (placemarks, error) in
+            var tempString = ""
             if error == nil {
                 let firstLocation = placemarks?[0]
                 
-                var tempString = ""
                 if (firstLocation?.subLocality != nil) {
                     tempString = tempString + (firstLocation?.subLocality)!
                 }
@@ -129,11 +129,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                     tempString = tempString + (firstLocation?.country)!
                 }
-                // print (tempString)
-                
-                OperationQueue.main.addOperation {
-                    self.currentLocationLabel.text = tempString
-                }
+            } else {
+                print(error.debugDescription)
+                tempString = error.debugDescription
+            }
+            OperationQueue.main.addOperation {
+                self.currentLocationLabel.text = tempString
             }
             return
         })
