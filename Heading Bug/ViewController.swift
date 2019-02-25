@@ -165,6 +165,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.currentLatLongLabel.alpha = 1.0
         })
         
+        
+        wayPointManager.sortWayPoints()
         tableView.reloadData()
     }
     
