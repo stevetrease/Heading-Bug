@@ -254,5 +254,21 @@ class WayPointManager {
         wayPoint.name = "Apple Park"
         wayPoint.location = CLLocationCoordinate2D (latitude: 37.334722, longitude: -122.008889)
         wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "UQ Storage"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 30.101, longitude: 47.831)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "UQ Marine"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 30.126, longitude: 47.903)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "UQ Camp"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 30.108, longitude: 47.836)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
+        
+        wayPoint.name = "NGL"
+        wayPoint.location = CLLocationCoordinate2D (latitude: 30.564, longitude: 47.344)
+        wayPointManager.addWayPoint(wayPoint: wayPoint)
     }
 }
