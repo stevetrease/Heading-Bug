@@ -129,13 +129,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     }
                     tempString = tempString + (firstLocation?.country)!
                 }
+                OperationQueue.main.addOperation {
+                    self.currentLocationLabel.isHidden = false
+                    self.currentLocationLabel.text = tempString
+                }
             } else {
                 print(error.debugDescription)
-                tempString = error.debugDescription
+                tempString = ""
+                OperationQueue.main.addOperation {
+                    self.currentLocationLabel.isHidden = true
+                    self.currentLocationLabel.text = tempString
+                }
             }
-            OperationQueue.main.addOperation {
-                self.currentLocationLabel.text = tempString
-            }
+            
             return
         })
             

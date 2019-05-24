@@ -112,6 +112,7 @@
 				TargetAttributes = {
 					AAF58014221C3418002C29E6 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -354,7 +355,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "eu.trease.Heading-Bug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -372,7 +373,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "eu.trease.Heading-Bug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
